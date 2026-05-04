@@ -10,13 +10,13 @@ import time
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = "secret123"
+app.secret_key = "your_secret_code"
 
 # ---------------- DB CONFIG ----------------
 db_config = {
     "host": "localhost",
     "user": "root",
-    "password": "ayushipandey",
+    "password": "your_password",
     "database": "qr_attendance"
 }
 

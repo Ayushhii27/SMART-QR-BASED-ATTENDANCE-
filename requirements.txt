@@ -2,3 +2,5 @@ flask
 qrcode
 pillow
 pandas
+mysql-connector-python
+gunicorn

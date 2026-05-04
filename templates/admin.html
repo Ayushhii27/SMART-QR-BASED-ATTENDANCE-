@@ -1,0 +1,76 @@
+<!-- templates/admin.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Admin Dashboard</h1>
+<br>
+
+<div class="cards">
+
+<div class="card">
+<h3>👨‍🎓 Students</h3>
+<div class="stat">{{ total_students }}</div>
+</div>
+
+<div class="card">
+<h3>👩‍🏫 Teachers</h3>
+<div class="stat">{{ total_teachers }}</div>
+</div>
+
+<div class="card">
+<h3>✅ Today</h3>
+<div class="stat">{{ present }}</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="cards">
+
+<div class="card">
+<h2>Add Student</h2>
+
+<form method="POST" action="/add_student">
+<input type="text" name="roll" placeholder="Roll Number" required>
+<button type="submit">Add Student</button>
+</form>
+
+<p class="small">Username = Roll No | Password = Roll No</p>
+</div>
+
+<div class="card">
+<h2>Quick Actions</h2>
+
+<a href="/reports" class="btn">Reports</a><br><br>
+<a href="/export" class="btn">Export CSV</a><br><br>
+<a href="/teacher" class="btn">Teacher Panel</a>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h2>Recent Users</h2>
+
+<table>
+<tr>
+<th>Username</th>
+<th>Role</th>
+</tr>
+
+{% for u in users %}
+<tr>
+<td>{{ u[0] }}</td>
+<td>{{ u[1] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

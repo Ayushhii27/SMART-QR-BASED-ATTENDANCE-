@@ -1,0 +1,92 @@
+<!-- templates/student.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Student Dashboard</h1>
+<br>
+
+<div class="cards">
+
+<div class="card">
+
+<h2>📷 Scan Teacher QR</h2>
+
+<input type="text" id="roll" value="{{ username }}" readonly>
+
+<div id="reader"></div>
+
+<p class="small">Allow camera + GPS</p>
+
+</div>
+
+<div class="card center">
+
+<h2>Your Attendance</h2>
+<div class="stat">{{ percent }}%</div>
+
+{% if percent >= 75 %}
+<span class="badge">Eligible</span>
+{% else %}
+<span class="badge red">Low Attendance</span>
+{% endif %}
+
+<br><br>
+
+<p>Total Classes: {{ total_classes }}</p>
+<p>Status Today: {{ today_status }}</p>
+
+</div>
+
+<div class="card">
+
+<h2>Recent Logs</h2>
+
+{% for r in recent %}
+<p>✔ {{ r[0] }} - {{ r[1] }}</p>
+{% endfor %}
+
+</div>
+
+</div>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<script>
+function showMsg(msg){
+alert(msg);
+}
+
+function onScanSuccess(decodedText){
+
+let roll=document.getElementById("roll").value;
+
+navigator.geolocation.getCurrentPosition(function(pos){
+
+fetch("/scan_qr",{
+method:"POST",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:
+"roll="+roll+
+"&qr_value="+decodedText+
+"&lat="+pos.coords.latitude+
+"&lon="+pos.coords.longitude
+})
+.then(r=>r.text())
+.then(data=>{
+showMsg(data);
+location.reload();
+});
+
+});
+
+}
+
+new Html5QrcodeScanner(
+"reader",
+{fps:10,qrbox:220}
+).render(onScanSuccess);
+</script>
+
+{% endblock %}

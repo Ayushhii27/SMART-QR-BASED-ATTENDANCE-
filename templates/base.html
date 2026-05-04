@@ -1,0 +1,74 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart QR Attendance</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="layout">
+
+<!-- Sidebar -->
+<div class="sidebar">
+<h2>QR System</h2>
+
+<a href="/" class="{% if request.path=='/' %}active{% endif %}">
+<i class="fa fa-house"></i> Dashboard
+</a>
+
+<a href="/login" class="{% if request.path=='/login' %}active{% endif %}">
+<i class="fa fa-lock"></i> Login
+</a>
+
+<a href="/admin" class="{% if request.path=='/admin' %}active{% endif %}">
+<i class="fa fa-user-shield"></i> Admin
+</a>
+
+<a href="/teacher" class="{% if request.path=='/teacher' %}active{% endif %}">
+<i class="fa fa-chalkboard-user"></i> Teacher
+</a>
+
+<a href="/student" class="{% if request.path=='/student' %}active{% endif %}">
+<i class="fa fa-user-graduate"></i> Student
+</a>
+
+<a href="/reports" class="{% if request.path=='/reports' %}active{% endif %}">
+<i class="fa fa-file-lines"></i> Reports
+</a>
+
+<a href="/logout">
+<i class="fa fa-right-from-bracket"></i> Logout
+</a>
+
+</div>
+
+<!-- Main -->
+<div class="main">
+
+<div class="topbar">
+Smart QR Attendance Management
+
+{% if username %}
+<span style="float:right;font-size:15px;">
+👤 {{ username }} | {{ role }}
+</span>
+{% endif %}
+</div>
+
+{% block content %}{% endblock %}
+
+<footer>
+Smart QR Attendance System © 2026 | Final Year Major Project
+<br>
+Made By Ayushi Pandey & Saumya Soni
+</footer>
+
+</div>
+</div>
+
+</body>
+</html>

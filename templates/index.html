@@ -1,0 +1,68 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="hero">
+
+<div>
+<h1>Smart QR Attendance</h1>
+<p>Secure attendance with QR + GPS verification.</p>
+
+<a href="/teacher" class="btn">📷 Generate QR</a>
+<a href="/admin" class="btn">⚙ Admin Panel</a>
+</div>
+
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="170">
+
+</div>
+
+<br>
+
+<div class="cards">
+
+<div class="card">
+<h3>👨‍🎓 Students</h3>
+<div class="stat">{{ total_students }}</div>
+</div>
+
+<div class="card">
+<h3>👩‍🏫 Teachers</h3>
+<div class="stat">{{ total_teachers }}</div>
+</div>
+
+<div class="card">
+<h3>✅ Today</h3>
+<div class="stat">{{ present }}</div>
+</div>
+
+<div class="card">
+<h3>❌ Absent</h3>
+<div class="stat">{{ absent }}</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+<h2>Weekly Attendance Trend</h2>
+<canvas id="chart" height="95"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+new Chart(document.getElementById("chart"),{
+type:"bar",
+data:{
+labels:["Mon","Tue","Wed","Thu","Fri","Sat"],
+datasets:[{
+label:"Attendance",
+data:[65,72,81,74,88,92]
+}]
+},
+options:{responsive:true}
+});
+</script>
+
+{% endblock %}

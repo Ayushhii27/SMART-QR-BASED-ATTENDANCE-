@@ -1,0 +1,50 @@
+<!-- templates/reports.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Reports</h1>
+<br>
+
+<div class="card">
+
+<form method="GET">
+
+<input type="text" name="roll" placeholder="Search Roll Number">
+
+<input type="date" name="date">
+
+<button type="submit">Filter</button>
+
+<a href="/reports" class="btn">Reset</a>
+
+<a href="/export" class="btn">Export CSV</a>
+
+</form>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<table>
+
+<tr>
+<th>Roll</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+
+{% for row in rows %}
+<tr>
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

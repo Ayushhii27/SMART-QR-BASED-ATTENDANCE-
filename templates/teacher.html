@@ -1,0 +1,65 @@
+<!-- templates/teacher.html -->
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Teacher Dashboard</h1>
+<br>
+
+<div class="cards">
+
+<div class="card center">
+
+<h2>📷 Live QR</h2>
+
+<div class="qr-box">
+    <img src="/static/qr.png?{{ range(1,9999)|random }}" width="220">
+</div>
+<p class="small">
+QR refresh in <span id="timer">30</span> sec
+</p>
+
+
+<br><br>
+<p class="small">Scan this QR within 50m classroom radius</p>
+<p class="small">Valid only during active session</p>
+
+{% if qr_active %}
+<span class="badge">Session Active</span>
+<br><br>
+<a href="/end_session" class="btn">End Session</a>
+{% else %}
+<span class="badge red">Session Closed</span>
+<br><br>
+<a href="/start_session" class="btn">Start Session</a>
+{% endif %}
+
+</div>
+
+<div class="card">
+
+<h2>Today's Attendance</h2>
+<div class="stat">{{ present }}</div>
+
+<div class="progress-bar">
+  <div class="progress-bar-fill" style="width: {{ percent }}%"></div>
+</div>
+
+<p class="small">{{ percent }}% attendance rate</p>
+<script>
+let time = 30;
+
+setInterval(() => {
+    time--;
+
+    if(time <= 0){
+        time = 30;
+        location.reload();
+    }
+
+    document.getElementById("timer").innerText = time;
+
+}, 1000);
+</script>
+
+
+{% endblock %}

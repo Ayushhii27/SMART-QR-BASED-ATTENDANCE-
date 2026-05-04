@@ -1,0 +1,32 @@
+<!-- templates/login.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="max-width:520px;margin:auto;padding-top:40px;">
+
+<div class="card">
+
+<h1 style="margin-bottom:20px;">Secure Login</h1>
+
+<form method="POST">
+
+<input type="text" name="username" placeholder="Username" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<button type="submit" style="width:100%;">Login</button>
+
+</form>
+
+<br>
+
+<p><b>Admin:</b> admin / admin123</p>
+<p><b>Teacher:</b> teacher / teacher123</p>
+<p><b>Student:</b> RollNo / RollNo</p>
+
+</div>
+
+</div>
+
+{% endblock %}
